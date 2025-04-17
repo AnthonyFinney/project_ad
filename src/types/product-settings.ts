@@ -1,26 +1,76 @@
 export interface ProductSettings {
-    // Product
+    // Product - Perfume Specific
     volume: string;
     labelText: string;
+    bottleType: string;
+    bottleColor: string;
+    capStyle: string;
+    liquidColor: string;
+    perfumeType: string;
     prop: string;
+    additionalDetails: string;
 
     // Camera
     focalLength: number;
     aperture: number;
     angle: number;
     bokehShape: string;
+    lensType?: string;
+    focusPoint?: string;
+    depthOfField?: string;
+    perspective?: string;
+    composition?: string;
+    framing?: string;
+    foreground?: string;
+    backgroundElements?: string;
+    cameraMovement?: string;
+    photographyStyle?: string;
+    photographerReference?: string;
+    exposureStyle?: string;
+    useFilmGrain?: boolean;
+    useVignette?: boolean;
 
     // Environment
     background: string;
+    backgroundStyle?: string;
     hdriPreset: string;
     hdrRotation: number;
     goboPattern: string;
     lightSetup: string;
+    lightQuality?: string;
+    lightColor?: string;
     shadowIntensity: number;
     reflectionIntensity: number;
+    setting?: string;
+    surface?: string;
+    timeOfDay?: string;
+    sceneStyle?: string;
+    atmosphere?: string;
+    weatherEffect?: string;
+    particleEffect?: string;
+    mood?: string;
+    useReflection?: boolean;
+    useWaterSurface?: boolean;
 
     // Effects
     lut: string;
+    colorScheme?: string;
+    dominantColor?: string;
+    toneMapping?: string;
+    saturation?: number;
+    contrast?: number;
+    visualStyle?: string;
+    artDirection?: string;
+    renderStyle?: string;
+    brandReference?: string;
+    era?: string;
+    quality?: string;
+    specialEffect?: string;
+    textureOverlay?: string;
+    useGlow?: boolean;
+    useBloom?: boolean;
+    useShadows?: boolean;
+    useSharpening?: boolean;
 
     // AI
     useLoRA: boolean;
@@ -28,6 +78,15 @@ export interface ProductSettings {
     steps: number;
     cfg: number;
     negativePrompt: string;
+    aiModel?: string;
+    seed?: string;
+    stylePreset?: string;
+    styleModifier?: string;
+    industryReference?: string;
+    publicationReference?: string;
+    useHDR?: boolean;
+    use8K?: boolean;
+    negativePreset?: string;
 
     // Export
     resolution: string;
@@ -39,6 +98,18 @@ export interface ProductSettings {
     tagline: string;
     ctaText: string;
     ctaPosition: string;
+    bodyText?: string;
     watermark: boolean;
     watermarkText: string;
+    fontStyle?: string;
+    fontWeight?: string;
+    textColor?: string;
+    textEffect?: string;
+    textAlignment?: string;
+    textCase?: string;
+    brandingStyle?: string;
+    logoPosition?: string;
+    brandIdentity?: string;
+    brandingElements?: string;
+    useTagline?: boolean;
 }
