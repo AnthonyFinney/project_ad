@@ -20,7 +20,6 @@ import { EnvironmentTab } from "./environment-tab";
 import { EffectsTab } from "./effects-tab";
 import { AITab } from "./ai-tab";
 import { TextTab } from "./text-tab";
-import { ExportTab } from "./export-tab";
 import { PromptDisplay } from "./prompt-display";
 import { ProductSettings } from "@/types/product-settings";
 import { toast } from "sonner";
@@ -543,7 +542,7 @@ export default function ProductAdGenerator() {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 <div className="lg:col-span-2">
                     <Tabs defaultValue="product" className="w-full">
-                        <TabsList className="grid grid-cols-7 mb-6">
+                        <TabsList className="grid grid-cols-6 mb-6">
                             <TabsTrigger
                                 value="product"
                                 className="flex items-center gap-2"
@@ -592,13 +591,6 @@ export default function ProductAdGenerator() {
                                 <Type className="h-4 w-4" />
                                 <span className="hidden sm:inline">Text</span>
                             </TabsTrigger>
-                            <TabsTrigger
-                                value="export"
-                                className="flex items-center gap-2"
-                            >
-                                <Download className="h-4 w-4" />
-                                <span className="hidden sm:inline">Export</span>
-                            </TabsTrigger>
                         </TabsList>
 
                         <TabsContent value="product">
@@ -638,13 +630,6 @@ export default function ProductAdGenerator() {
 
                         <TabsContent value="text">
                             <TextTab
-                                settings={settings}
-                                updateSettings={updateSettings}
-                            />
-                        </TabsContent>
-
-                        <TabsContent value="export">
-                            <ExportTab
                                 settings={settings}
                                 updateSettings={updateSettings}
                             />
