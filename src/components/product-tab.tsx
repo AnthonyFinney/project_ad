@@ -1,7 +1,6 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-
 import {
     Card,
     CardContent,
@@ -20,7 +19,9 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { ImageUpload } from "./image-upload";
 import type { ProductSettings } from "../types/product-settings";
+import { Checkbox } from "@/components/ui/checkbox";
 
 interface ProductTabProps {
     settings: ProductSettings;
@@ -39,10 +40,13 @@ export function ProductTab({ settings, updateSettings }: ProductTabProps) {
                 </CardHeader>
                 <CardContent className="space-y-6">
                     <Tabs defaultValue="bottle" className="w-full">
-                        <TabsList className="grid grid-cols-3 mb-4">
+                        <TabsList className="grid grid-cols-4 mb-4">
                             <TabsTrigger value="bottle">Bottle</TabsTrigger>
                             <TabsTrigger value="content">Content</TabsTrigger>
                             <TabsTrigger value="styling">Styling</TabsTrigger>
+                            <TabsTrigger value="image">
+                                Bottle Image
+                            </TabsTrigger>
                         </TabsList>
 
                         <TabsContent value="bottle" className="space-y-4">
@@ -433,6 +437,79 @@ export function ProductTab({ settings, updateSettings }: ProductTabProps) {
                                         className="resize-none h-20"
                                     />
                                 </div>
+                            </div>
+                        </TabsContent>
+
+                        <TabsContent value="image" className="space-y-4">
+                            <div className="grid grid-cols-1 gap-4">
+                                <div className="space-y-2">
+                                    <Label>Bottle Reference Image</Label>
+                                    <p className="text-sm text-gray-500 mb-4">
+                                        Upload an image of your bottle to use as
+                                        a reference. This will be included in
+                                        the prompt.
+                                    </p>
+                                    <ImageUpload
+                                        onImageUpload={(imageData) =>
+                                            updateSettings({
+                                                bottleImage: imageData,
+                                            })
+                                        }
+                                        onImageRemove={() =>
+                                            updateSettings({
+                                                bottleImage: undefined,
+                                            })
+                                        }
+                                        currentImage={settings.bottleImage}
+                                        label="Upload Bottle Image"
+                                    />
+                                    <div className="flex items-center space-x-2 mt-4">
+                                        <Checkbox
+                                            id="useImageAsMainReference"
+                                            checked={
+                                                settings.useImageAsMainReference ||
+                                                false
+                                            }
+                                            onCheckedChange={(checked) =>
+                                                updateSettings({
+                                                    useImageAsMainReference:
+                                                        checked === true,
+                                                })
+                                            }
+                                        />
+                                        <Label htmlFor="useImageAsMainReference">
+                                            Use image as primary reference
+                                            (override bottle settings)
+                                        </Label>
+                                    </div>
+                                </div>
+                                {settings.bottleImage && (
+                                    <div className="space-y-2">
+                                        <Label htmlFor="bottleImageDescription">
+                                            Image Description
+                                        </Label>
+                                        <Textarea
+                                            id="bottleImageDescription"
+                                            value={
+                                                settings.bottleImageDescription ||
+                                                ""
+                                            }
+                                            onChange={(e) =>
+                                                updateSettings({
+                                                    bottleImageDescription:
+                                                        e.target.value,
+                                                })
+                                            }
+                                            placeholder="Describe the bottle in the image (e.g., 'crystal bottle with gold cap')"
+                                            className="resize-none h-20"
+                                        />
+                                        <p className="text-xs text-gray-500">
+                                            Adding a description helps the AI
+                                            understand the key features of your
+                                            bottle image.
+                                        </p>
+                                    </div>
+                                )}
                             </div>
                         </TabsContent>
                     </Tabs>

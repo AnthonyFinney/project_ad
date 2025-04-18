@@ -13,15 +13,15 @@ import {
     Download,
     Copy,
 } from "lucide-react";
-
 import { ProductTab } from "./product-tab";
 import { CameraTab } from "./camera-tab";
 import { EnvironmentTab } from "./environment-tab";
 import { EffectsTab } from "./effects-tab";
 import { AITab } from "./ai-tab";
 import { TextTab } from "./text-tab";
+import { ExportTab } from "./export-tab";
 import { PromptDisplay } from "./prompt-display";
-import { ProductSettings } from "@/types/product-settings";
+import type { ProductSettings } from "../types/product-settings";
 import { toast } from "sonner";
 
 export default function ProductAdGenerator() {
@@ -96,31 +96,71 @@ export default function ProductAdGenerator() {
         };
 
         // PRODUCT SECTION
-        // Build detailed perfume description
-        let perfumeDescription = `A ${settings.volume} ${settings.bottleColor} ${settings.bottleType} ${settings.perfumeType} bottle`;
+        if (settings.bottleImage) {
+            // If we have a bottle image
+            let imageDescription =
+                "Create a professional advertisement featuring a perfume bottle that looks exactly like the reference image";
 
-        if (settings.capStyle) {
-            perfumeDescription += ` with a ${settings.capStyle} cap`;
-        }
+            if (settings.bottleImageDescription) {
+                imageDescription += `: ${settings.bottleImageDescription}`;
+            }
 
-        if (
-            settings.liquidColor &&
-            settings.liquidColor !== settings.bottleColor
-        ) {
-            perfumeDescription += `, containing ${settings.liquidColor} liquid`;
-        }
+            sections.product.push(imageDescription);
 
-        if (settings.labelText) {
-            perfumeDescription += `, labeled '${settings.labelText}'`;
-        }
+            // If not using image as main reference, also include the bottle settings
+            if (!settings.useImageAsMainReference) {
+                let perfumeDescription = `A ${settings.volume} ${settings.bottleColor} ${settings.bottleType} ${settings.perfumeType} bottle`;
 
-        if (settings.additionalDetails) {
-            perfumeDescription += `. ${settings.additionalDetails}`;
+                if (settings.capStyle) {
+                    perfumeDescription += ` with a ${settings.capStyle} cap`;
+                }
+
+                if (
+                    settings.liquidColor &&
+                    settings.liquidColor !== settings.bottleColor
+                ) {
+                    perfumeDescription += `, containing ${settings.liquidColor} liquid`;
+                }
+
+                if (settings.labelText) {
+                    perfumeDescription += `, labeled '${settings.labelText}'`;
+                }
+
+                if (settings.additionalDetails) {
+                    perfumeDescription += `. ${settings.additionalDetails}`;
+                } else {
+                    perfumeDescription += `.`;
+                }
+
+                sections.product.push(perfumeDescription);
+            }
         } else {
-            perfumeDescription += `.`;
-        }
+            // No bottle image, use standard description
+            let perfumeDescription = `A ${settings.volume} ${settings.bottleColor} ${settings.bottleType} ${settings.perfumeType} bottle`;
 
-        sections.product.push(perfumeDescription);
+            if (settings.capStyle) {
+                perfumeDescription += ` with a ${settings.capStyle} cap`;
+            }
+
+            if (
+                settings.liquidColor &&
+                settings.liquidColor !== settings.bottleColor
+            ) {
+                perfumeDescription += `, containing ${settings.liquidColor} liquid`;
+            }
+
+            if (settings.labelText) {
+                perfumeDescription += `, labeled '${settings.labelText}'`;
+            }
+
+            if (settings.additionalDetails) {
+                perfumeDescription += `. ${settings.additionalDetails}`;
+            } else {
+                perfumeDescription += `.`;
+            }
+
+            sections.product.push(perfumeDescription);
+        }
 
         if (settings.prop !== "none") {
             sections.product.push(`Styled with ${settings.prop} as a prop.`);
@@ -542,7 +582,7 @@ export default function ProductAdGenerator() {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 <div className="lg:col-span-2">
                     <Tabs defaultValue="product" className="w-full">
-                        <TabsList className="grid grid-cols-6 mb-6">
+                        <TabsList className="grid grid-cols-7 mb-6">
                             <TabsTrigger
                                 value="product"
                                 className="flex items-center gap-2"
@@ -591,6 +631,13 @@ export default function ProductAdGenerator() {
                                 <Type className="h-4 w-4" />
                                 <span className="hidden sm:inline">Text</span>
                             </TabsTrigger>
+                            <TabsTrigger
+                                value="export"
+                                className="flex items-center gap-2"
+                            >
+                                <Download className="h-4 w-4" />
+                                <span className="hidden sm:inline">Export</span>
+                            </TabsTrigger>
                         </TabsList>
 
                         <TabsContent value="product">
@@ -634,6 +681,13 @@ export default function ProductAdGenerator() {
                                 updateSettings={updateSettings}
                             />
                         </TabsContent>
+
+                        <TabsContent value="export">
+                            <ExportTab
+                                settings={settings}
+                                updateSettings={updateSettings}
+                            />
+                        </TabsContent>
                     </Tabs>
 
                     <div className="mt-6 flex gap-4">
@@ -656,7 +710,11 @@ export default function ProductAdGenerator() {
 
                 <div className="lg:col-span-1">
                     <div className="sticky top-6 space-y-6">
-                        <PromptDisplay prompt={prompt} />
+                        <PromptDisplay
+                            prompt={prompt}
+                            bottleImage={settings.bottleImage}
+                            onCopy={copyPromptToClipboard}
+                        />
                         <div className="text-sm text-gray-500 mt-4">
                             <h3 className="font-medium mb-2">
                                 How to use this prompt:
@@ -673,6 +731,13 @@ export default function ProductAdGenerator() {
                                     image generation tool (Midjourney, DALL-E,
                                     Stable Diffusion, etc.)
                                 </li>
+                                {settings.bottleImage && (
+                                    <li className="font-medium">
+                                        Upload your bottle image to the AI tool
+                                        when prompted (each tool has different
+                                        methods for this)
+                                    </li>
+                                )}
                             </ol>
                         </div>
                     </div>

@@ -9,6 +9,9 @@ export interface ProductSettings {
     perfumeType: string;
     prop: string;
     additionalDetails: string;
+    bottleImage?: string;
+    bottleImageDescription?: string;
+    useImageAsMainReference?: boolean;
 
     // Camera
     focalLength: number;
