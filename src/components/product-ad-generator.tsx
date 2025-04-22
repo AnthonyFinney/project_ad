@@ -99,7 +99,7 @@ export default function ProductAdGenerator() {
         if (settings.bottleImage) {
             // If we have a bottle image
             let imageDescription =
-                "Create a professional advertisement featuring a perfume bottle that looks exactly like the reference image";
+                "Create a professional advertisement featuring a perfume bottle that matches the supplied reference exactly, with no alterations";
 
             if (settings.bottleImageDescription) {
                 imageDescription += `: ${settings.bottleImageDescription}`;
