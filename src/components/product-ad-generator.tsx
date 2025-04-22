@@ -167,7 +167,7 @@ export default function ProductAdGenerator() {
         }
 
         // CAMERA SECTION
-        let cameraDescription = `Shot with a ${
+        let cameraDescription = `Camera: Shot with a ${
             settings.lensType || "macro"
         } lens at ${settings.focalLength}mm, f/${settings.aperture}`;
 

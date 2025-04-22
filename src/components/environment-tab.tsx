@@ -493,6 +493,81 @@ export function EnvironmentTab({
                                             <SelectItem value="cosmic">
                                                 Cosmic
                                             </SelectItem>
+                                            <SelectItem value="moroccan-riad">
+                                                Moroccan Riad
+                                            </SelectItem>
+                                            <SelectItem value="ottoman-palace">
+                                                Ottoman Palace Interior
+                                            </SelectItem>
+                                            <SelectItem value="modern-elegant">
+                                                Modern Elegant
+                                            </SelectItem>
+                                            <SelectItem value="industrial-loft">
+                                                Industrial Loft
+                                            </SelectItem>
+                                            <SelectItem value="minimalist">
+                                                Minimalist
+                                            </SelectItem>
+                                            <SelectItem value="vintage-library">
+                                                Vintage Library
+                                            </SelectItem>
+                                            <SelectItem value="jewelry-display">
+                                                Jewelry Display
+                                            </SelectItem>
+                                            <SelectItem value="mountain-peak">
+                                                Mountain Peak
+                                            </SelectItem>
+                                            <SelectItem value="urban-night">
+                                                Urban at Night
+                                            </SelectItem>
+                                            <SelectItem value="morning-haze">
+                                                Morning Haze
+                                            </SelectItem>
+                                            <SelectItem value="sunset-terrace">
+                                                Sunset Terrace
+                                            </SelectItem>
+                                            <SelectItem value="opera-house">
+                                                Grand Opera House
+                                            </SelectItem>
+                                            <SelectItem value="tropical-greenhouse">
+                                                Tropical Greenhouse
+                                            </SelectItem>
+                                            <SelectItem value="antique-study">
+                                                Antique Study
+                                            </SelectItem>
+                                            <SelectItem value="vineyard">
+                                                Sunlit Vineyard
+                                            </SelectItem>
+                                            <SelectItem value="ancient-ruins">
+                                                Ancient Ruins
+                                            </SelectItem>
+                                            <SelectItem value="coastal-cliffs">
+                                                Coastal Cliffs
+                                            </SelectItem>
+                                            <SelectItem value="snow-landscape">
+                                                Snow-Capped Wilderness
+                                            </SelectItem>
+                                            <SelectItem value="cherry-blossom">
+                                                Cherry Blossom Grove
+                                            </SelectItem>
+                                            <SelectItem value="flower-garden">
+                                                Flower Garden
+                                            </SelectItem>
+                                            <SelectItem value="waterfall">
+                                                Waterfall
+                                            </SelectItem>
+                                            <SelectItem value="tea-garden">
+                                                Tea Garden
+                                            </SelectItem>
+                                            <SelectItem value="hills">
+                                                Hillside Vista
+                                            </SelectItem>
+                                            <SelectItem value="cafes">
+                                                Charming Café
+                                            </SelectItem>
+                                            <SelectItem value="tourist-place">
+                                                Iconic Landmark
+                                            </SelectItem>
                                         </SelectContent>
                                     </Select>
                                 </div>
