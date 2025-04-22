@@ -175,7 +175,10 @@ export function AITab({ settings, updateSettings }: AITabProps) {
                         </div>
                         <Textarea
                             id="negativePrompt"
-                            value={settings.negativePrompt}
+                            value={
+                                (settings.negativePrompt,
+                                "text overlays or typography")
+                            }
                             onChange={(e) =>
                                 updateSettings({
                                     negativePrompt: e.target.value,
